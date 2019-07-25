@@ -1,0 +1,15 @@
+<div>
+  <form action="<?= scriptUrl ?>" method="get">
+    <label for="response">Approve?&#10;&#13;</label>
+    <select name="response">
+      <option>Yes</option>
+      <option>No</option>
+    </select>
+    <!-- A Hidden field is a handy way to pass information to the
+         Server-side POST handler. -->
+    <input type="hidden" name="teacherEmail" value="<?= teacherEmail ?>" /> 
+    <input type="hidden" name="club" value="<?= club ?>" />
+    <input type="hidden" name="message" value="<?= message ?>" />
+    <input type="submit" value="Submit" />
+  </form>
+</div>
