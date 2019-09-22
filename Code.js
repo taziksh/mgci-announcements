@@ -16,6 +16,7 @@ var clubResponses = SpreadsheetApp.openById(clubSheetId).getSheets()[0];
 
 var altImage = "1r7jhRJw8e8JtyIkLeJqCWmiQkQK6qeYc";
 
+//Clears slides
 function clearSlides(){
   var slideArray = presentation.getSlides();  
   for (i = 0; i < slideArray.length; i++)
@@ -24,6 +25,7 @@ function clearSlides(){
   }
 }
 
+//Inserts club image - if available
 insertLogo = function(clubData, slide, row) {
   var image, fileId, blob, imageInSlide;
   
@@ -45,6 +47,7 @@ insertLogo = function(clubData, slide, row) {
   imageInSlide.setTop(10);
 }
 
+//Modified binary search
 binarySearch = function(arr, l, r, x)
 {
     if (r >= l) { 
@@ -60,6 +63,7 @@ binarySearch = function(arr, l, r, x)
     return -1; 
 }
 
+//Formats input using regex to standardize entries
 format = function(str)
 {
   // lowercase -> remove spaces, dashes
@@ -67,6 +71,7 @@ format = function(str)
   //!!!!!!!!!
 }
 
+//Creates and styles new slides from announcement text
 createSlides = function(club, message){
   /*
   */  
@@ -109,7 +114,7 @@ createSlides = function(club, message){
 }
 
 
-// POST handler for responses; 
+//Asynchronous GET handler for email verification and email confirmation
 doGet = function(e) { 
   
   // Build a row of data with timestamp + posted response
@@ -135,11 +140,16 @@ doGet = function(e) {
                        .setMimeType(ContentService.MimeType.TEXT);
 }
 
+/*Calls Gmail API to email teacher
+ *Currently only supports Gmail addresses,
+ *but may be extended as required.
+*/
+
 sendEmail = function(studentEmail, teacherEmail, club, message, subject, html) {
   MailApp.sendEmail(teacherEmail, club + ': ' + message, subject, {htmlBody: html, name: studentEmail + ' '});
 }
 
- /* Build & Send Survey, an HTML form in email.*/
+//Creates email from HTML template
 createMessage = function(studentEmail, teacherEmail, club, message) {
   var subject = 'Morning Announcement';
   
@@ -160,7 +170,11 @@ createMessage = function(studentEmail, teacherEmail, club, message) {
   sendEmail(studentEmail, teacherEmail, club, message, subject, html);    // Send email form
 }
 
-function caller()
+/*
+* Checks new entries in spreadsheet and calls appropriate functions
+* for email verification, and subsequent submission to slides. 
+*/
+function main()
 {
   var firstRow = 2;
 
@@ -200,6 +214,9 @@ function caller()
   }
 }
 
+/*
+* Function to that posts admin-verified slides, bypassing the email procedure.
+*/
 function addTeacherSlides()
 {
   var teacherData = teacherResponses.getDataRange().getValues();
@@ -229,21 +246,41 @@ function addTeacherSlides()
   }
 }
 
+/*
+Runs Apps Script "triggers" at specific times of day,
+automatically clearing slides and updating the spreadsheets.
+*/
+
+
+/*
+ Note that triggers must be created before they can be run.
+ For more info: https://developers.google.com/apps-script/guides/dashboard
+*/
+
+
 function nightTrigger()
 {
- caller(); 
+ main(); 
 }
 
 function afternoonTrigger() // this is the 3:30PM trigger.
 {
   clearSlides();
-  //caller();
+  //main();
 }
 
 function morningTrigger() // this is the 8:00AM trigger.
 {
    addTeacherSlides();
 }
+
+/*
+ Functions to create new triggers.
+ Triggers must be configured via
+ the dashboard, and adjusted, as
+ there are restrictions to Google's
+ automatic time estimation.
+*/
 
 function trigger()
 {
