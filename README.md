@@ -4,7 +4,6 @@
 Digital announcements system written Google Apps Script during 12th grade. The program allows users to remotely post announcements at any time.
 
 This is currently in use by Marc Garneau C.I., where paper announcements have been phased out. Other TDSB schools are currently in talks to trial the proram. If you're interested, reach out to me at tshahjah@uwaterloo.ca
-Easily adaptable to other TDSB schools, and other high schools in Ontario, with minimal configuration.
 
 ## Guide
 
@@ -23,9 +22,7 @@ If you want to make non-trivial changes to the codebase, it’s recommended to d
 ## TO-DO
 
 ### Permissions
-The script and the daily triggers are still tied to tazikshahjahan@gmail.com. Future implementations should move all permissions to mgci.announcements@gmail.com.
-
-Permission to execute the script is dependent on ownership of a number of associated Sheets, Slides and Forms. Ideally, these would all be in a single Drive folder, which can then be transferred as required. Currently, certain Drive documents (the Forms) must be tied to a TDSB account for automatic domain validation. This validation should be account-agnostic.
+The script and the daily triggers are still tied to tazikshahjahan@gmail.com. Future implementations should move all permissions to mgci.announcements@gmail.com. Permission to execute the script is dependent on ownership of a number of associated Sheets, Slides and Forms. Ideally, these would all be in a single Drive folder, which can then be transferred as required. Currently, certain Drive documents (the Forms) must be tied to a TDSB account for automatic domain validation. This validation should be account-agnostic.
 
 On a more technical note, the Javascript itself *works*, but could be much better. Refactoring is not on my mind, but we will see. 
 
