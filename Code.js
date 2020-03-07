@@ -1,4 +1,3 @@
-
 /* 
 */
 var slidesId = "13PLtgiqNN4hqjYIzrPrVP_J14EzY_2JerRsciH-O-oo";
@@ -307,3 +306,4 @@ ScriptApp.newTrigger('nightTrigger')
       .nearMinute(00)
       .create();
 }
+
