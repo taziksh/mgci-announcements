@@ -1,4 +1,4 @@
-# Paperless Announcements
+# MGCI Announcements
 
 ## About 
 Digital announcements system written Google Apps Script during 12th grade. The program allows users to remotely post announcements at any time.
