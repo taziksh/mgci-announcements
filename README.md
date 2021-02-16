@@ -7,7 +7,7 @@ This is currently in use by Marc Garneau C.I., where paper announcements have be
 
 ![Hype poster. Creds: Probably Hannah Nie](/images/branding.png)
 
-## Guide
+## Developer Guide
 
 ### Updating
 Just updating the source code is usually not enough. In order to generate new triggers, you have to look at the Trigger Dashboard (->Edit->Current Project’s Triggers).
